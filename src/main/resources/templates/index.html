@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+<body>
+<button  class="btn btn-primary" th:href="@{/}">Add new City</button>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">City</th>
+        <th scope="col">Quốc gia</th>
+        <th scope="col" colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="city : ${cities}">
+        <td scope="col" th:text="${city.id}"></td>
+        <td scope="col" th:text="${city.getName()}"></td>
+        <td scope="col" colspan="2" th:text="${city.getCountry().getName()}"></td>
+        <td style="text-align: center"><a class="btn btn-success" th:href="@{/edit/__${city.id}__}">Update</a>
+        <td style="text-align: center"><a class="btn btn-outline-info" th:href="@{/view}">View</a></td>
+        <td style="text-align: center"><a class="btn btn-danger" th:href="@{delete/__${city.id}__}"
+                                          onclick="return confirm('Are you sure to delete?')">Delete</a></td>
+
+
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
